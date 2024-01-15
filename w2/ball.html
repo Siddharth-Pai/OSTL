@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #ball {
+      width: 50px;
+      height: 50px;
+      background-color: #3498db;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+  <title>Bouncing Ball</title>
+</head>
+<body>
+  <div id="ball"></div>
+
+  <script>
+    // Get the ball element
+    const ball = document.getElementById('ball');
+
+    // Set initial position and speed of the ball
+    let x = window.innerWidth / 2 - 25; // initial x position
+    let y = window.innerHeight / 2 - 25; // initial y position
+    let dx = 2; // change in x (speed along the x-axis)
+    let dy = 2; // change in y (speed along the y-axis)
+
+    // Function to update the position of the ball and handle bouncing
+    function updateBallPosition() {
+      x += dx;
+      y += dy;
+
+      // Bounce off the right and left edges
+      if (x + 50 > window.innerWidth || x < 0) {
+        dx = -dx;
+      }
+
+      // Bounce off the bottom and top edges
+      if (y + 50 > window.innerHeight || y < 0) {
+        dy = -dy;
+      }
+
+      // Update the position of the ball
+      ball.style.left = x + 'px';
+      ball.style.top = y + 'px';
+
+      // Request the next frame
+      requestAnimationFrame(updateBallPosition);
+    }
+
+    // Start the ball animation
+    updateBallPosition();
+  </script>
+</body>
+</html>

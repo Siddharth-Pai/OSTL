@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #targetElement {
+      width: 100px;
+      height: 100px;
+      background-color: #3498db;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #positionInfo {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+  <title>Get Element Position</title>
+</head>
+<body>
+  <div id="targetElement"></div>
+  <div id="positionInfo"></div>
+
+  <script>
+    // Function to get the position of an element
+    function getElementPosition(element) {
+      const rect = element.getBoundingClientRect();
+      return {
+        top: rect.top + window.scrollY,
+        left: rect.left + window.scrollX
+      };
+    }
+
+    // Get the target element
+    const targetElement = document.getElementById('targetElement');
+
+    // Get the position of the target element
+    const targetPosition = getElementPosition(targetElement);
+
+    // Display the position information
+    const positionInfo = document.getElementById('positionInfo');
+    positionInfo.textContent = `Position of the target element:\nTop: ${targetPosition.top}px\nLeft: ${targetPosition.left}px`;
+
+    // Update position information on window resize (optional)
+    window.addEventListener('resize', function () {
+      const updatedPosition = getElementPosition(targetElement);
+      positionInfo.textContent = `Position of the target element:\nTop: ${updatedPosition.top}px\nLeft: ${updatedPosition.left}px`;
+    });
+  </script>
+</body>
+</html>

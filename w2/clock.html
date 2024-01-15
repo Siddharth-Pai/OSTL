@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to right, #FFD700, #87CEFA);
+      color: #333;
+    }
+
+    #container {
+      text-align: center;
+    }
+
+    #greeting {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #clock {
+      font-size: 36px;
+    }
+  </style>
+  <title>Greetings and Clock</title>
+</head>
+<body>
+  <div id="container">
+    <div id="greeting"></div>
+    <div id="clock"></div>
+  </div>
+
+  <script>
+    function getGreeting() {
+      const now = new Date();
+      const hour = now.getHours();
+
+      if (hour >= 5 && hour < 12) {
+        return 'Good morning!';
+      } else if (hour >= 12 && hour < 18) {
+        return 'Good afternoon!';
+      } else {
+        return 'Good evening!';
+      }
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+
+      const formattedHours = hours < 10 ? '0' + hours : hours;
+      const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+      const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+
+      const clockText = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+      document.getElementById('clock').textContent = clockText;
+
+      setTimeout(updateClock, 1000);
+    }
+
+    window.onload = function () {
+      const greeting = getGreeting();
+      document.getElementById('greeting').textContent = greeting;
+
+      updateClock(); // Start the clock
+    };
+  </script>
+</body>
+</html>

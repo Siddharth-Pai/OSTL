@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+  <title>Rain Animation</title>
+</head>
+<body>
+  <canvas id="rainCanvas"></canvas>
+
+  <script>
+    // Get the canvas element and its context
+    const canvas = document.getElementById('rainCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set the canvas size to the window size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Function to generate random number in a given range
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    // Raindrop class
+    class Raindrop {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = 0;
+        this.length = randomInRange(5, 15);
+        this.speed = randomInRange(2, 5);
+      }
+
+      fall() {
+        this.y += this.speed;
+        if (this.y > canvas.height) {
+          this.y = 0;
+          this.x = Math.random() * canvas.width;
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y + this.length);
+        ctx.strokeStyle = 'rgba(0, 0, 255, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    }
+
+    // Create an array to store raindrops
+    const raindrops = [];
+
+    // Create initial set of raindrops
+    for (let i = 0; i < 100; i++) {
+      raindrops.push(new Raindrop());
+    }
+
+    // Function to animate the rain
+    function animateRain() {
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw each raindrop
+      for (const drop of raindrops) {
+        drop.fall();
+        drop.draw();
+      }
+
+      // Request the next frame
+      requestAnimationFrame(animateRain);
+    }
+
+    // Resize canvas when the window is resized
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Start the rain animation
+    animateRain();
+  </script>
+</body>
+</html>
