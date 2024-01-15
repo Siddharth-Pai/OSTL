@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Exercise 1</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+ 
+<body>
+	<div id="top">
+		<h1>Exercise 1</h1>
+		<p>
+			Create a HTML5 document to get an HTML5 element’s 
+			position on the web page with the help of CSS and
+			JavaScript function.
+		</p>
+	</div>
+
+	<div id="main">
+        <p>
+            Here is some random text.
+        </p>
+        <p>
+        	Here is some more random text.
+        </p>
+        <p id="target"> 
+        	---->>>> Element to find the coordinates of <<<<----
+        </p>
+        <p>
+        	Some more text.
+        </p>
+        <button class="button button1" onclick="getPoint()">
+            Get coordinate
+        </button>
+        <p id="output"></p>
+ 	</div>
+
+    <script>
+        function getPoint() {
+            let target = document
+                .getElementById("target");
+ 
+            let output = document
+                .getElementById("output");
+ 
+            output.innerHTML =
+                "Co-ordinate of the element:" +
+                " (" + target.offsetLeft + ", "
+                + target.offsetTop + ")";
+        }
+    </script>
+</body>
+ 
+</html>
