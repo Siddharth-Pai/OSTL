@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Table and Image</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Alternating row colors */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+        </tr>
+        <tr>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+        <tr>
+            <td>Data 7</td>
+            <td>Data 8</td>
+            <td>Data 9</td>
+        </tr>
+    </tbody>
+</table>
+
+<img src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/model_detail/few_off/sian-fkp-37/2023/over_m.jpg" alt="Lamborghini Image">
+
+<button onclick="moveTableAndImage()">Move Right to Left</button>
+
+<script>
+    function moveTableAndImage() {
+        const table = document.querySelector('table');
+        const img = document.querySelector('img');
+
+        // Move 10 pixels to the left on each click
+        table.style.marginLeft = (parseInt(table.style.marginLeft) || 0) - 10 + 'px';
+        img.style.marginLeft = (parseInt(img.style.marginLeft) || 0) - 10 + 'px';
+    }
+</script>
+
+</body>
+</html>
